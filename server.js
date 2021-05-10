@@ -11,10 +11,9 @@ app.use(express.json());
 const db = mysql.createConnection(
     {
     host: 'localhost',
-      // Your MySQL username,
     user: 'root',
-      // Your MySQL password
-    password: '',
+    port: 3301,
+    password: '1Jayddenmann!',
     database: 'election'
     },
     console.log('Connected to the election database.')
@@ -27,4 +26,12 @@ app.use((req, res) => {
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
+});
+
+// Delete a candidate
+db.query(`DELETE FROM candidates WHERE id = ?`, 1, (err, result) => {
+    if (err) {
+    console.log(err);
+    }
+    console.log(result);
 });
